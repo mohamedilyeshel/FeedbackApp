@@ -1,14 +1,11 @@
-import { useState } from "react";
+import Card from "./SharedComponents/Card";
 
 function FeedbackItem({ feedbackText, feedbackRating }) {
-  const [rating, setRating] = useState(feedbackRating);
-  const [text, setText] = useState(feedbackText);
-
   return (
-    <div className="card">
-      <h2 className="text-display">{text}</h2>
-      <p className="num-display">{rating}</p>
-    </div>
+    <Card reverse={false}>
+      <h2 className="text-display">{feedbackText}</h2>
+      <p className="num-display">{feedbackRating}</p>
+    </Card>
   );
 }
 
