@@ -1,4 +1,4 @@
-function Header({ appTitle, desc, bgColor, titleColor, descColor }) {
+function Header({ appTitle, desc }) {
   const headerStyle = {
     backgroundColor: "rgba(0,0,0,0.4)",
     color: "#ff6a95",
