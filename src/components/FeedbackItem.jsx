@@ -8,7 +8,7 @@ function FeedbackItem({
   deleteFeedbacks,
 }) {
   return (
-    <Card reverse={false}>
+    <Card>
       <h2 className="text-display">{feedbackText}</h2>
       <p className="num-display">{feedbackRating}</p>
       <button

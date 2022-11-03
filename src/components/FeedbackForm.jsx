@@ -31,6 +31,14 @@ function FeedbackForm({ addFeedback }) {
         onSubmit={(e) => {
           e.preventDefault();
           addFeedback(feedbackText, feedbackRating);
+          setFeedbackText("");
+          for (let x in e.currentTarget) {
+            if (!isNaN(x)) {
+              if (e.currentTarget[x].checked) {
+                e.currentTarget[x].checked = false;
+              }
+            }
+          }
         }}
       >
         <h2>Rate our service</h2>
@@ -44,6 +52,7 @@ function FeedbackForm({ addFeedback }) {
             type="text"
             placeholder="Write your feedback here"
             onChange={verifyInput}
+            value={!feedbackText ? "" : feedbackText}
           />
           <Button type="submit" version="secondary" isDisabled={disabled}>
             Send

@@ -3,6 +3,7 @@ import FeedbackForm from "./components/FeedbackForm";
 import FeedbackItemList from "./components/FeedbackItemList";
 import FeedbackStats from "./components/FeedbackStats";
 import Header from "./components/Header";
+import { v4 } from "uuid";
 
 function App() {
   const data = [
@@ -22,19 +23,22 @@ function App() {
   };
 
   const addFeedback = (text, rate) => {
-    let feedbacks = feedBackItems.map((item) => {
-      return item;
+    // First Method using a new a array to set the value of state as array
+    // let feedbacks = feedBackItems.map((item) => {
+    //   return item;
+    // });
+    // let id = v4();
+    // feedbacks.unshift({
+    //   itemId: id,
+    //   itemRating: rate,
+    //   itemText: text,
+    // });
+    //    setFeedbackItems(feedbacks);
+
+    // Second method using
+    setFeedbackItems((prev) => {
+      return [{ itemId: v4(), itemRating: rate, itemText: text }, ...prev];
     });
-
-    let id = Math.floor(Math.random() * 99 + 1);
-
-    feedbacks.unshift({
-      itemId: id,
-      itemRating: rate,
-      itemText: text,
-    });
-
-    setFeedbackItems(feedbacks);
   };
 
   return (

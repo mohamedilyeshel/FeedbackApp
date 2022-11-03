@@ -10,14 +10,12 @@ function RatingSelect({ setRating }) {
             type="radio"
             name="rate"
             id={`rate-${i}`}
-            value={i}
-            onChange={() => setRating(i)}
+            onChange={(e) => setRating(i)}
           />
           <label htmlFor={`rate-${i}`}>{i}</label>
         </>
       );
     }
-
     return ratings;
   };
 
