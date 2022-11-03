@@ -1,6 +1,6 @@
 import FeedbackItem from "./FeedbackItem";
 
-function FeedbackItemList({ feedbacks }) {
+function FeedbackItemList({ feedbacks, deleteFeedbacks }) {
   if (!feedbacks || feedbacks.length === 0) {
     return <h1>No feedbacks</h1>;
   }
@@ -11,8 +11,10 @@ function FeedbackItemList({ feedbacks }) {
         return (
           <FeedbackItem
             key={item.itemId}
+            feedbackId={item.itemId}
             feedbackText={item.itemText}
             feedbackRating={item.itemRating}
+            deleteFeedbacks={deleteFeedbacks}
           />
         );
       })}

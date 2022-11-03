@@ -1,10 +1,24 @@
 import Card from "./SharedComponents/Card";
+import { TiDelete } from "react-icons/ti";
 
-function FeedbackItem({ feedbackText, feedbackRating }) {
+function FeedbackItem({
+  feedbackId,
+  feedbackText,
+  feedbackRating,
+  deleteFeedbacks,
+}) {
   return (
     <Card reverse={false}>
       <h2 className="text-display">{feedbackText}</h2>
       <p className="num-display">{feedbackRating}</p>
+      <button
+        onClick={() => {
+          deleteFeedbacks(feedbackId);
+        }}
+        className="close"
+      >
+        <TiDelete />
+      </button>
     </Card>
   );
 }

@@ -136,6 +136,8 @@ input:focus {
   cursor: pointer;
   background: none;
   border: none;
+  color: #ff6a95;
+  font-size: 1.3rem;
 }
 
 .edit {
