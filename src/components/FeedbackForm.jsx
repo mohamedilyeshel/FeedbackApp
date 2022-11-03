@@ -1,10 +1,12 @@
 import { useState } from "react";
+import RatingSelect from "./RatingSelect";
 import AlertMessage from "./SharedComponents/AlertMessage";
 import Button from "./SharedComponents/Button";
 import Card from "./SharedComponents/Card";
 
 function FeedbackForm({ addFeedback }) {
   const [feedbackText, setFeedbackText] = useState("");
+  const [feedbackRating, setFeedbackRating] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
@@ -28,10 +30,15 @@ function FeedbackForm({ addFeedback }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          //addFeedback(feedbackText);
+          addFeedback(feedbackText, feedbackRating);
         }}
       >
         <h2>Rate our service</h2>
+        <RatingSelect
+          setRating={(rate) => {
+            setFeedbackRating(rate);
+          }}
+        />
         <div className="input-group">
           <input
             type="text"

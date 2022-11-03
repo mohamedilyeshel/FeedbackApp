@@ -21,14 +21,16 @@ function App() {
     );
   };
 
-  const addFeedback = (text) => {
+  const addFeedback = (text, rate) => {
     let feedbacks = feedBackItems.map((item) => {
       return item;
     });
 
+    let id = Math.floor(Math.random() * 99 + 1);
+
     feedbacks.unshift({
-      itemId: 1,
-      itemRating: 8,
+      itemId: id,
+      itemRating: rate,
       itemText: text,
     });
 
