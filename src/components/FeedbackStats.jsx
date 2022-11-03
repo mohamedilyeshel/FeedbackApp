@@ -17,7 +17,7 @@ function FeedbackStats({ feedbacks }) {
 
   return (
     <div className="feedback-stats">
-      <h4>Total of Ratings: {feedbacks.length}</h4>
+      <h4>Total of Ratings: {!feedbacks ? 0 : feedbacks.length}</h4>
       <h4>Average Rating: {averageRatings().toFixed(2)}</h4>
     </div>
   );

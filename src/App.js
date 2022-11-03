@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FeedbackForm from "./components/FeedbackForm";
 import FeedbackItemList from "./components/FeedbackItemList";
 import FeedbackStats from "./components/FeedbackStats";
 import Header from "./components/Header";
@@ -20,6 +21,20 @@ function App() {
     );
   };
 
+  const addFeedback = (text) => {
+    let feedbacks = feedBackItems.map((item) => {
+      return item;
+    });
+
+    feedbacks.unshift({
+      itemId: 1,
+      itemRating: 8,
+      itemText: text,
+    });
+
+    setFeedbackItems(feedbacks);
+  };
+
   return (
     <>
       <Header
@@ -27,6 +42,7 @@ function App() {
         desc="a React application to make CRUD of feedbacks"
       />
       <div className="container">
+        <FeedbackForm addFeedback={addFeedback} />
         <FeedbackStats feedbacks={feedBackItems} />
         <FeedbackItemList
           feedbacks={feedBackItems}
