@@ -32,6 +32,7 @@ function FeedbackForm({ addFeedback }) {
           e.preventDefault();
           addFeedback(feedbackText, feedbackRating);
           setFeedbackText("");
+          setDisabled(true);
           for (let x in e.currentTarget) {
             if (!isNaN(x)) {
               if (e.currentTarget[x].checked) {
