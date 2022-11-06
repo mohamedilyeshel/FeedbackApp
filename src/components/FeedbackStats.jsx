@@ -1,4 +1,8 @@
-function FeedbackStats({ feedbacks }) {
+import { useContext } from "react";
+import feedbackContext from "../context/FeedbackContext";
+
+function FeedbackStats() {
+  const { feedbacks } = useContext(feedbackContext);
   const averageRatings = () => {
     if (!feedbacks || feedbacks.length === 0) {
       return 0;

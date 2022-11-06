@@ -1,19 +1,19 @@
+import feedbackContext from "../context/FeedbackContext";
+import { useContext } from "react";
+
+// Components and Pages
 import Card from "./SharedComponents/Card";
 import { TiDelete } from "react-icons/ti";
 
-function FeedbackItem({
-  feedbackId,
-  feedbackText,
-  feedbackRating,
-  deleteFeedbacks,
-}) {
+function FeedbackItem({ item }) {
+  const { deleteFeedbacks } = useContext(feedbackContext);
   return (
     <Card>
-      <h2 className="text-display">{feedbackText}</h2>
-      <p className="num-display">{feedbackRating}</p>
+      <h2 className="text-display">{item.itemText}</h2>
+      <p className="num-display">{item.itemRating}</p>
       <button
         onClick={() => {
-          deleteFeedbacks(feedbackId);
+          deleteFeedbacks(item.itemId);
         }}
         className="close"
       >
@@ -24,8 +24,7 @@ function FeedbackItem({
 }
 
 FeedbackItem.defaultProps = {
-  feedbackRating: 0,
-  feedbackText: "No Feedback Text",
+  item: { itemId: 1, itemText: "No feedback", itemRating: 0 },
 };
 
 export default FeedbackItem;

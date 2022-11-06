@@ -1,7 +1,12 @@
+import feedbackContext from "../context/FeedbackContext";
+import { useContext } from "react";
+// Compoenents and Pages
 import FeedbackItem from "./FeedbackItem";
 import { motion, AnimatePresence } from "framer-motion";
 
-function FeedbackItemList({ feedbacks, deleteFeedbacks }) {
+function FeedbackItemList() {
+  const { feedbacks } = useContext(feedbackContext);
+
   if (!feedbacks || feedbacks.length === 0) {
     return <h1>No feedbacks</h1>;
   }
@@ -17,13 +22,7 @@ function FeedbackItemList({ feedbacks, deleteFeedbacks }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <FeedbackItem
-                key={item.itemId}
-                feedbackId={item.itemId}
-                feedbackText={item.itemText}
-                feedbackRating={item.itemRating}
-                deleteFeedbacks={deleteFeedbacks}
-              />
+              <FeedbackItem key={item.itemId} item={item} />
             </motion.div>
           );
         })}
