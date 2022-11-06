@@ -4,6 +4,9 @@ import FeedbackItemList from "./components/FeedbackItemList";
 import FeedbackStats from "./components/FeedbackStats";
 import Header from "./components/Header";
 import { v4 } from "uuid";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./pages/About";
+import AboutIcon from "./components/AboutIcon";
 
 function App() {
   const data = [
@@ -42,20 +45,32 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <Header
         appTitle="Feedback UI"
         desc="a React application to make CRUD of feedbacks"
       />
       <div className="container">
-        <FeedbackForm addFeedback={addFeedback} />
-        <FeedbackStats feedbacks={feedBackItems} />
-        <FeedbackItemList
-          feedbacks={feedBackItems}
-          deleteFeedbacks={deleteFeedbacks}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <FeedbackForm addFeedback={addFeedback} />
+                <FeedbackStats feedbacks={feedBackItems} />
+                <FeedbackItemList
+                  feedbacks={feedBackItems}
+                  deleteFeedbacks={deleteFeedbacks}
+                />
+                <AboutIcon />
+              </>
+            }
+          />
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<h1>404 Page Not Found</h1>} />
+        </Routes>
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 

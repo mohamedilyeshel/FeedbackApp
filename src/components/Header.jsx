@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Header({ appTitle, desc }) {
   const headerStyle = {
     backgroundColor: "rgba(0,0,0,0.4)",
@@ -7,7 +8,9 @@ function Header({ appTitle, desc }) {
 
   return (
     <header style={headerStyle}>
-      <h1>{appTitle}</h1>
+      <Link to="/">
+        <h1>{appTitle}</h1>
+      </Link>
       <p>{desc}</p>
     </header>
   );
