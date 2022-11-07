@@ -3,10 +3,10 @@ import { useContext } from "react";
 
 // Components and Pages
 import Card from "./SharedComponents/Card";
-import { TiDelete } from "react-icons/ti";
+import { TiDelete, TiEdit } from "react-icons/ti";
 
 function FeedbackItem({ item }) {
-  const { deleteFeedbacks } = useContext(feedbackContext);
+  const { deleteFeedbacks, editFeedbacks } = useContext(feedbackContext);
   return (
     <Card>
       <h2 className="text-display">{item.itemText}</h2>
@@ -18,6 +18,14 @@ function FeedbackItem({ item }) {
         className="close"
       >
         <TiDelete />
+      </button>
+      <button
+        className="edit"
+        onClick={() => {
+          editFeedbacks(item.itemId, item.itemText, item.itemRating);
+        }}
+      >
+        <TiEdit />
       </button>
     </Card>
   );

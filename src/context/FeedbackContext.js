@@ -18,6 +18,10 @@ export const FeedbackProvider = ({ children }) => {
     },
   ]);
 
+  const [feedbackText, setFeedbackText] = useState("");
+  const [feedbackRating, setFeedbackRating] = useState(null);
+  const [editedId, seteditedId] = useState(null);
+
   const deleteFeedbacks = (id) => {
     setFeedbacks(
       feedbacks.filter((feedback) => {
@@ -26,7 +30,7 @@ export const FeedbackProvider = ({ children }) => {
     );
   };
 
-  const addFeedback = (text, rate) => {
+  const addFeedback = () => {
     // First Method using a new a array to set the value of state as array
     // let feedbacks = feedBackItems.map((item) => {
     //   return item;
@@ -40,8 +44,41 @@ export const FeedbackProvider = ({ children }) => {
     //    setFeedbackItems(feedbacks);
     // Second method using
     setFeedbacks((prev) => {
-      return [{ itemId: v4(), itemRating: rate, itemText: text }, ...prev];
+      return [
+        { itemId: v4(), itemRating: feedbackRating, itemText: feedbackText },
+        ...prev,
+      ];
     });
+  };
+
+  const editFeedbacks = (id, text, rate) => {
+    setFeedbackRating(rate);
+    setFeedbackText(text);
+    seteditedId(id);
+  };
+
+  const editFeedback = () => {
+    setFeedbacks(
+      feedbacks.map((feedback) => {
+        if (feedback.itemId === editedId) {
+          return {
+            itemId: editedId,
+            itemText: feedbackText,
+            itemRating: feedbackRating,
+          };
+        }
+        return feedback;
+      })
+    );
+    seteditedId(null);
+  };
+
+  const setFeedbacktext = (text) => {
+    setFeedbackText(text);
+  };
+
+  const setFeedbackRate = (rate) => {
+    setFeedbackRating(rate);
   };
 
   return (
@@ -50,6 +87,13 @@ export const FeedbackProvider = ({ children }) => {
         feedbacks,
         deleteFeedbacks,
         addFeedback,
+        feedbackRating,
+        feedbackText,
+        setFeedbackRate,
+        setFeedbacktext,
+        editFeedbacks,
+        editedId,
+        editFeedback,
       }}
     >
       {children}

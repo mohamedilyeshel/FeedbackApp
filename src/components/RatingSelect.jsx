@@ -1,6 +1,8 @@
-import React from "react";
+import { useContext } from "react";
+import feedbackContext from "../context/FeedbackContext";
 
-function RatingSelect({ setRating }) {
+function RatingSelect() {
+  const { setFeedbackRate, feedbackRating } = useContext(feedbackContext);
   const generateRatings = () => {
     const ratings = [];
     for (let i = 0; i < 11; i++) {
@@ -10,7 +12,8 @@ function RatingSelect({ setRating }) {
             type="radio"
             name="rate"
             id={`rate-${i}`}
-            onChange={(e) => setRating(i)}
+            onChange={() => setFeedbackRate(i)}
+            checked={feedbackRating === i ? true : false}
           />
           <label htmlFor={`rate-${i}`}>{i}</label>
         </>

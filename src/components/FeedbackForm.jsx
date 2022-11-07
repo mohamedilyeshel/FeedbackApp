@@ -9,10 +9,18 @@ import Button from "./SharedComponents/Button";
 import Card from "./SharedComponents/Card";
 
 function FeedbackForm() {
-  const { addFeedback } = useContext(feedbackContext);
+  const {
+    addFeedback,
+    feedbackRating,
+    feedbackText,
+    setFeedbackRate,
+    setFeedbacktext,
+    editedId,
+    editFeedback,
+  } = useContext(feedbackContext);
 
-  const [feedbackText, setFeedbackText] = useState("");
-  const [feedbackRating, setFeedbackRating] = useState(0);
+  // const [feedbackText, setFeedbackText] = useState("");
+  // const [feedbackRating, setFeedbackRating] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
@@ -28,7 +36,7 @@ function FeedbackForm() {
       setDisabled(false);
     }
 
-    setFeedbackText(e.target.value);
+    setFeedbacktext(e.target.value);
   };
 
   return (
@@ -36,24 +44,18 @@ function FeedbackForm() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addFeedback(feedbackText, feedbackRating);
-          setFeedbackText("");
-          setDisabled(true);
-          for (let x in e.currentTarget) {
-            if (!isNaN(x)) {
-              if (e.currentTarget[x].checked) {
-                e.currentTarget[x].checked = false;
-              }
-            }
+          if (!editedId) {
+            addFeedback();
+          } else {
+            editFeedback();
           }
+          setFeedbacktext("");
+          setFeedbackRate(null);
+          setDisabled(true);
         }}
       >
         <h2>Rate our service</h2>
-        <RatingSelect
-          setRating={(rate) => {
-            setFeedbackRating(rate);
-          }}
-        />
+        <RatingSelect />
         <div className="input-group">
           <input
             type="text"
