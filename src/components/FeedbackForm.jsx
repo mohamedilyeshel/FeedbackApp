@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import feedbackContext from "../context/FeedbackContext";
 
 // Components and Pages
@@ -11,7 +10,6 @@ import Card from "./SharedComponents/Card";
 function FeedbackForm() {
   const {
     addFeedback,
-    feedbackRating,
     feedbackText,
     setFeedbackRate,
     setFeedbacktext,
@@ -23,6 +21,12 @@ function FeedbackForm() {
   // const [feedbackRating, setFeedbackRating] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (editedId !== null) {
+      setDisabled(false);
+    }
+  }, [editedId]);
 
   const verifyInput = (e) => {
     if (!e.target.value) {

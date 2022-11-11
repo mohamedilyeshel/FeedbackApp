@@ -45,7 +45,11 @@ export const FeedbackProvider = ({ children }) => {
     // Second method using
     setFeedbacks((prev) => {
       return [
-        { itemId: v4(), itemRating: feedbackRating, itemText: feedbackText },
+        {
+          itemId: v4(),
+          itemRating: feedbackRating,
+          itemText: feedbackText.trim(),
+        },
         ...prev,
       ];
     });
@@ -63,7 +67,7 @@ export const FeedbackProvider = ({ children }) => {
         if (feedback.itemId === editedId) {
           return {
             itemId: editedId,
-            itemText: feedbackText,
+            itemText: feedbackText.trim(),
             itemRating: feedbackRating,
           };
         }
