@@ -1,9 +1,8 @@
 import React from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "../components/SharedComponents/Card";
 
 function About() {
-  const navigate = useNavigate();
   return (
     <>
       <Card>
