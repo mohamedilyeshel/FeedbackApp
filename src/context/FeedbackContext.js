@@ -15,7 +15,7 @@ export const FeedbackProvider = ({ children }) => {
 
   const fetchFeedbacks = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:3000/feedbacks");
+      const res = await fetch("http://localhost:8000/feedbacks");
       const json = await res.json();
       setFeedbacks(json);
       setIsLoading(false);
@@ -32,7 +32,7 @@ export const FeedbackProvider = ({ children }) => {
 
   const deleteFeedbacks = async (id) => {
     try {
-      await fetch(`http://localhost:3000/feedbacks/${id}`, {
+      await fetch(`http://localhost:8000/feedbacks/${id}`, {
         method: "DELETE",
       });
       setFeedbacks(
@@ -48,7 +48,7 @@ export const FeedbackProvider = ({ children }) => {
 
   const addFeedback = async () => {
     try {
-      const res = await fetch("http://localhost:3000/feedbacks", {
+      const res = await fetch("http://localhost:8000/feedbacks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -83,7 +83,7 @@ export const FeedbackProvider = ({ children }) => {
 
   const editFeedback = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/feedbacks/${editedId}`, {
+      await fetch(`http://localhost:8000/feedbacks/${editedId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: feedbackText, rating: feedbackRating }),
