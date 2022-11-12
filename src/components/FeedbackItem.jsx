@@ -9,11 +9,11 @@ function FeedbackItem({ item }) {
   const { deleteFeedbacks, editFeedbacks } = useContext(feedbackContext);
   return (
     <Card>
-      <h2 className="text-display">{item.itemText}</h2>
-      <p className="num-display">{item.itemRating}</p>
+      <h2 className="text-display">{item.text}</h2>
+      <p className="num-display">{item.rating}</p>
       <button
         onClick={() => {
-          deleteFeedbacks(item.itemId);
+          deleteFeedbacks(item.id);
         }}
         className="close"
       >
@@ -22,7 +22,7 @@ function FeedbackItem({ item }) {
       <button
         className="edit"
         onClick={() => {
-          editFeedbacks(item.itemId, item.itemText, item.itemRating);
+          editFeedbacks(item.id, item.text, item.rating);
         }}
       >
         <TiEdit />
@@ -32,7 +32,7 @@ function FeedbackItem({ item }) {
 }
 
 FeedbackItem.defaultProps = {
-  item: { itemId: 1, itemText: "No feedback", itemRating: 0 },
+  item: { id: 1, text: "No feedback", rating: 0 },
 };
 
 export default FeedbackItem;

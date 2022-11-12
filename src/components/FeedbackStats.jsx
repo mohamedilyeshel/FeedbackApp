@@ -11,7 +11,7 @@ function FeedbackStats() {
     return (
       feedbacks
         .map((item) => {
-          return item.itemRating;
+          return item.rating;
         })
         .reduce((totalRatings, currentRatings) => {
           return totalRatings + currentRatings;
